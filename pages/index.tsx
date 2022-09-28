@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { getSession } from "next-auth/react";
+import { getSession, GetSessionParams } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Center, Sidebar } from "../components";
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 
 export default Home;
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: GetSessionParams | undefined) {
   const session = await getSession(context)
 
   return {
