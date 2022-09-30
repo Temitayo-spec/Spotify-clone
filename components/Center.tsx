@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
@@ -9,6 +9,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { playlistIdState, playlistAtom } from "../atoms/playlistAtom";
 import useSpotify from "../hooks/useSpotify";
 import Songs from "./Songs";
+import { useRouter } from "next/router";
 
 const colors = [
   "from-indigo-500",
@@ -43,11 +44,18 @@ const Center = () => {
 
     getPlaylist();
   }, [spotifyApi, playlistId, setPlaylist]);
+  const router = useRouter();
 
   return (
     <div className="flex-grow text-white h-screen overflow-y-scroll scrollbar-hide">
       <header className="absolute top-5 right-8">
-        <div className="flex items-center bg-black space-x-2 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
+        <div
+          onClick={() => {
+            signOut();
+            router.replace("/login");
+          }}
+          className="flex items-center bg-black space-x-2 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2"
+        >
           {session?.user?.image ? (
             <Image
               className="rounded-full h-5 w-5 border-white border-2"

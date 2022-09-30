@@ -2,8 +2,7 @@ import type { NextPage } from "next";
 import { getSession, GetSessionParams } from "next-auth/react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { Center, Sidebar } from "../components";
-import styles from "../styles/Home.module.css";
+import { Center, Player, Sidebar } from "../components";
 import { useEffect } from "react";
 
 const Home: NextPage = () => {
@@ -29,18 +28,24 @@ const Home: NextPage = () => {
         <Sidebar />
         <Center />
       </main>
+      <div className="sticky bottom-0">
+        <Player />
+      </div>
     </div>
   );
 };
 
 export default Home;
 
-export async function getServerSideProps(context: GetSessionParams | undefined) {
-  const session = await getSession(context)
+export async function getServerSideProps(
+  context: GetSessionParams | undefined
+) {
+  const session = await getSession(context);
+  console.log(session);
 
   return {
     props: {
       session,
-    }
-  }
+    },
+  };
 }

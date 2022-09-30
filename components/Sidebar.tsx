@@ -30,13 +30,13 @@ const Sidebar = () => {
   }, [session, spotifyApi]);
 
   return (
-    <div className="text-gray-500 p-6 text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide font-bold lg:text-sm sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex">
+    <div className="pb-36 text-gray-500 p-6 pr-12 text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide font-bold lg:text-sm sm:max-w-[12rem] lg:max-w-[30rem] hidden md:inline-flex">
       <div className="space-y-4">
-        <div className="flex items-center space-x-4 mb-5">
+        <div className="flex items-center space-x-4 mb-7 mt-0">
           <BsSpotify className="text-4xl text-white" />
           <h1 className="text-3xl text-white font-bold">Spotify</h1>
         </div>
-        <button
+        {/* <button
           className="
             flex
             items-center
@@ -50,7 +50,7 @@ const Sidebar = () => {
         >
           <MdSettings className="h-8 w-8" />
           <p>Log out</p>
-        </button>
+        </button> */}
         <button
           className="
             flex
@@ -93,7 +93,7 @@ const Sidebar = () => {
             hover:text-white
       "
         >
-          <BsFillPlusSquareFill className="h-8 w-8" />
+          <BsFillPlusSquareFill className="h-8 w-8 text-gray-400 " />
           <p>Create Playlist</p>
         </button>
         <button
@@ -104,7 +104,7 @@ const Sidebar = () => {
             hover:text-white
       "
         >
-          <AiFillHeart className="h-8 w-8" />
+          <AiFillHeart className="h-8 w-8 text-gray-300 bg-gradient-to-br from-purple-700 to-white p-1 rounded-sm" />
           <p>Liked Songs</p>
         </button>
         <button
@@ -124,7 +124,7 @@ const Sidebar = () => {
           <p
             onClick={() => setPlaylistId(playlist.id)}
             key={playlist.id}
-            className="cursor-pointer hover:text-white"
+            className="cursor-pointer hover:text-white truncate w-44"
           >
             {playlist.name}
           </p>
